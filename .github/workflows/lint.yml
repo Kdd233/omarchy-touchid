@@ -1,0 +1,43 @@
+name: lint
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  shell:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Only syntax: these scripts target Omarchy hosts, so there is nothing to
+      # build or run here. bash -n still catches the mistakes that actually
+      # break an installer (unbalanced heredocs, bad function syntax).
+      - name: Syntax check
+        run: |
+          set -euo pipefail
+          status=0
+          while IFS= read -r file; do
+            if bash -n "$file"; then
+              echo "ok    $file"
+            else
+              echo "FAIL  $file"
+              status=1
+            fi
+          done < <(git ls-files '*.sh')
+          exit "$status"
+
+      - name: Entry points are executable
+        run: |
+          set -euo pipefail
+          for file in install.sh uninstall.sh doctor.sh scripts/*.sh; do
+            if [[ ! -x $file ]]; then
+              echo "not executable: $file"
+              exit 1
+            fi
+          done
+          echo "all entry points are executable"
