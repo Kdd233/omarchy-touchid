@@ -46,7 +46,7 @@ erased when Linux was installed — see [troubleshooting](docs/troubleshooting.m
 ## Quick start
 
 ```bash
-git clone https://github.com/<you>/omarchy-touchid.git
+git clone https://github.com/Kdd233/omarchy-touchid.git
 cd omarchy-touchid
 
 # 1. Check and fix the T1 prerequisites. Re-runnable, deletes nothing.
