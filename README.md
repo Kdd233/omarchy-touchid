@@ -1,5 +1,7 @@
 # omarchy-touchid
 
+[![lint](https://github.com/Kdd233/omarchy-touchid/actions/workflows/lint.yml/badge.svg?branch=main)](https://github.com/Kdd233/omarchy-touchid/actions/workflows/lint.yml)
+
 Fingerprint authentication for **sudo**, **polkit** prompts and the **Omarchy lock
 screen** on an Apple T1 MacBook running [Omarchy](https://omarchy.org/).
 
